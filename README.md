@@ -12,7 +12,7 @@ If you use git,
 git clone https://github.com/konbraphat51/HSS_Playground
 cd HSS_Playground
 git submodule init
-git submodule update
+git submodule update --remote
 ```
 
 ### Start coding
