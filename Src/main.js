@@ -64,6 +64,7 @@ async function main() {
 		constructor(x,y){
 			this.x = x
 			this.y = y
+			this.hitted = false
 		}
 	}
 
@@ -75,35 +76,49 @@ async function main() {
 	let bulletSpeed = 1
 	let playerRad = 10
 	let bulletRad = 10
+	let playerHitted = false
 	for (let cnt = 0; ; cnt++) {
 		//消去
 		SetColor("white")
 		DrawRect(0, 0, 800, 600)
 		
 		//player
-		SetColor("black")
+		SetColor("green")
+		if (playerHitted){
+			SetColor("red")
+		}
 		DrawCircle(x, y, playerRad)
 		
-		//bullets
-		SetColor("red")
-		for(let i = 0; i < bullets.length; i++){
-			DrawCircle(bullets[i].x, bullets[i].y, bulletRad)
-		}
 		//gene
 		if(Math.random() < 0.1){
 			let x = Math.random()*800
-			bullets.push(new Bullet(x, 0))
+			bullets.push(new Bullet(x, -bulletRad))
 		}
+
+		//bullets
+		for(let i = 0; i < bullets.length; i++){
+			if(bullets[i].hitted){
+				SetColor("red")
+			}else{
+				SetColor("blue")
+			}
+			DrawCircle(bullets[i].x, bullets[i].y, bulletRad)
+		}
+		
 		//move
 		for(let i = 0; i < bullets.length; i++){
 			bullets[i].y += bulletSpeed
 		}
 
 		//当たり判定
+		playerHitted = false
 		for(let i = 0; i < bullets.length; i++){
 			if(IsColliding(bullets[i].x, bullets[i].y, bulletRad, x, y, playerRad )){
 				SetColor("blue")
-				DrawText("当たった", x, y)
+				bullets[i].hitted = true
+				playerHitted = true
+			}else{
+				bullets[i].hitted = false
 			}
 		}
 		
