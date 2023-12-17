@@ -26,13 +26,17 @@ async function main() {
 
 	//ループ
 	//cntとカウンターを用意して、cnt < 3を満たす限り、cntを1増やしながらループ
-	for (let cnt = 0; cnt < 3 /* 繰り返す回数*/; cnt++) {
-		DrawText(cnt, 300, 300 + cnt * 100)
-	}
+	// for (let cnt = 0; cnt < 3 /* 繰り返す回数*/; cnt++) {
+	// 	DrawText(cnt, 300, 300 + cnt * 100)
+	// }
 
 	//無限ループ
 	// for (let cnt = 0; ; cnt++) {
 	// 	DrawText("無限ループ", 300, 300)
 	// }
-	ewaubihg
+
+	//待て
+	DrawText("待って", 300, 300)
+	await Sleep(2000) //一時停止、ミリ秒 1000ms -> 1s
+	DrawText("待った", 300, 400)
 }
