@@ -69,6 +69,7 @@ async function main() {
 	let vx = 1
 	let vy = 1
 	let bullets = []
+	let bulletSpeed = 1
 	for (let cnt = 0; ; cnt++) {
 		//消去
 		SetColor("white")
@@ -84,11 +85,16 @@ async function main() {
 			DrawCircle(bullets[i].x, bullets[i].y, 10)
 		}
 		//gene
-		if(GetKey("Space")){
+		if(Math.random() < 0.1){
 			let x = Math.random()*800
-			let y = Math.random()*600
-			bullets.push(new Bullet(x, y))
+			bullets.push(new Bullet(x, 0))
 		}
+		//move
+		for(let i = 0; i < bullets.length; i++){
+			bullets[i].y += bulletSpeed
+		}
+
+
 		
 		if(GetKey("ArrowRight")){
 			x += vx
