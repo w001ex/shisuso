@@ -58,15 +58,32 @@ async function main() {
 	// SetColor("white")
 	// DrawRect(0, 0, 800, 600)
 	//無限ループ
-for (let cnt = 0; ; cnt++) {
+	let x = 300
+	let y = 300
+	let vx = 1
+	let vy = 1
+	for (let cnt = 0; ; cnt++) {
 	//消去
 	SetColor("white")
 	DrawRect(0, 0, 800, 600)
 
 	SetColor("black")
-	if(GetKey("Space")){
-		DrawText("Space", 300, 300) 
+	DrawText("a", x, y) 
+	
+	if(GetKey("ArrowRight")){
+		x += vx
 	}
+	if(GetKey("ArrowLeft")){
+		x -= vx
+	}
+	if(GetKey("ArrowUp")){
+		y -= vy
+	}
+	if(GetKey("ArrowDown")){
+		y += vy
+	}
+	
+	
 	//これだと長引く
 
 	await Sleep(1) //休憩時間、冷却時間
