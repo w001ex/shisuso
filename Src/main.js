@@ -57,6 +57,9 @@ async function main() {
 	// //消えたように見せる
 	// SetColor("white")
 	// DrawRect(0, 0, 800, 600)
+	function IsColliding(x1, y1, r1, x2, y2, r2){
+		return (((x1 - x2)**2 + (y1 - y2)**2)**0.5 <= r1 +r2)
+	}
 	class Bullet{
 		constructor(x,y){
 			this.x = x
@@ -70,6 +73,8 @@ async function main() {
 	let vy = 1
 	let bullets = []
 	let bulletSpeed = 1
+	let playerRad = 10
+	let bulletRad = 10
 	for (let cnt = 0; ; cnt++) {
 		//消去
 		SetColor("white")
@@ -77,12 +82,12 @@ async function main() {
 		
 		//player
 		SetColor("black")
-		DrawText("a", x, y)
+		DrawCircle(x, y, playerRad)
 		
 		//bullets
 		SetColor("red")
 		for(let i = 0; i < bullets.length; i++){
-			DrawCircle(bullets[i].x, bullets[i].y, 10)
+			DrawCircle(bullets[i].x, bullets[i].y, bulletRad)
 		}
 		//gene
 		if(Math.random() < 0.1){
@@ -93,6 +98,15 @@ async function main() {
 		for(let i = 0; i < bullets.length; i++){
 			bullets[i].y += bulletSpeed
 		}
+
+		//当たり判定
+		for(let i = 0; i < bullets.length; i++){
+			if(IsColliding(bullets[i].x, bullets[i].y, bulletRad, x, y, playerRad )){
+				SetColor("blue")
+				DrawText("当たった", x, y)
+			}
+		}
+		
 
 
 		
