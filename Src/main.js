@@ -1,5 +1,5 @@
 async function main() {
-	SetFont("100px arial")
+	SetFont("50px arial")
 	// //""つける
 	// DrawText("ああ", 300, 500)
 	// //数字はつけなくても大丈夫
@@ -77,6 +77,8 @@ async function main() {
 	let playerRad = 10
 	let bulletRad = 10
 	let playerHitted = false
+	let score = 0
+	let highScore = 0
 	for (let cnt = 0; ; cnt++) {
 		//消去
 		SetColor("white")
@@ -110,6 +112,17 @@ async function main() {
 			bullets[i].y += bulletSpeed
 		}
 
+		//score
+		SetColor("black")
+		DrawText("currentScore:"+Math.floor(score), 450, 80)
+
+		score += 0.01
+
+		if(highScore <= score){
+			highScore = score
+		}
+		SetColor("black")
+		DrawText("highScore:"+Math.floor(highScore), 450, 160)
 		//当たり判定
 		playerHitted = false
 		for(let i = 0; i < bullets.length; i++){
@@ -117,6 +130,7 @@ async function main() {
 				SetColor("blue")
 				bullets[i].hitted = true
 				playerHitted = true
+				score = 0
 			}else{
 				bullets[i].hitted = false
 			}
