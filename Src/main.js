@@ -30,13 +30,15 @@ async function main() {
 	// 	DrawText(cnt, 300, 300 + cnt * 100)
 	// }
 
-	//無限ループ
-	// for (let cnt = 0; ; cnt++) {
-	// 	DrawText("無限ループ", 300, 300)
-	// }
-
 	//待て
-	DrawText("待って", 300, 300)
-	await Sleep(2000) //一時停止、ミリ秒 1000ms -> 1s
-	DrawText("待った", 300, 400)
+	// DrawText("待って", 300, 300)
+	// await Sleep(2000) //一時停止、ミリ秒 1000ms -> 1s
+	// DrawText("待った", 300, 400)
+
+	//無限ループ
+	for (let cnt = 0; ; cnt++) {
+		DrawText("無限ループ", 300, 300 + cnt) //これだと長引く
+
+		await Sleep(1) //休憩時間、冷却時間
+	}
 }
