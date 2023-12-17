@@ -57,36 +57,53 @@ async function main() {
 	// //消えたように見せる
 	// SetColor("white")
 	// DrawRect(0, 0, 800, 600)
-	//無限ループ
+	class Bullet{
+		constructor(x,y){
+			this.x = x
+			this.y = y
+		}
+	}
+
 	let x = 300
 	let y = 300
 	let vx = 1
 	let vy = 1
+	let bullets = []
 	for (let cnt = 0; ; cnt++) {
-	//消去
-	SetColor("white")
-	DrawRect(0, 0, 800, 600)
-
-	SetColor("black")
-	DrawText("a", x, y) 
+		//消去
+		SetColor("white")
+		DrawRect(0, 0, 800, 600)
+		
+		//player
+		SetColor("black")
+		DrawText("a", x, y)
+		
+		//bullets
+		SetColor("red")
+		for(let i = 0; i < bullets.length; i++){
+			DrawCircle(bullets[i].x, bullets[i].y, 10)
+		}
+		//gene
+		if(GetKey("Space")){
+			let x = Math.random()*800
+			let y = Math.random()*600
+			bullets.push(new Bullet(x, y))
+		}
+		
+		if(GetKey("ArrowRight")){
+			x += vx
+		}
+		if(GetKey("ArrowLeft")){
+			x -= vx
+		}
+		if(GetKey("ArrowUp")){
+			y -= vy
+		}
+		if(GetKey("ArrowDown")){
+			y += vy
+		}
+		await Sleep(1) //休憩時間、冷却時間
+	}
 	
-	if(GetKey("ArrowRight")){
-		x += vx
-	}
-	if(GetKey("ArrowLeft")){
-		x -= vx
-	}
-	if(GetKey("ArrowUp")){
-		y -= vy
-	}
-	if(GetKey("ArrowDown")){
-		y += vy
-	}
-	
-	
-	//これだと長引く
-
-	await Sleep(1) //休憩時間、冷却時間
-	}
 }
 
