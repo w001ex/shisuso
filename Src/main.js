@@ -31,6 +31,7 @@ async function main() {
 	// }
 
 	//待て
+	//aaaaaaaaaaaaaaaaaaaaaaaaaaaa
 	// DrawText("待って", 300, 300)
 	// await Sleep(2000) //一時停止、ミリ秒 1000ms -> 1s
 	// DrawText("待った", 300, 400)
