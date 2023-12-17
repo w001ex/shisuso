@@ -34,4 +34,5 @@ async function main() {
 	// for (let cnt = 0; ; cnt++) {
 	// 	DrawText("無限ループ", 300, 300)
 	// }
+	ewaubihg
 }
