@@ -36,11 +36,16 @@ async function main() {
 	// DrawText("待った", 300, 400)
 
 	//無限ループ
-	// for (let cnt = 0; ; cnt++) {
-	// 	DrawText("無限ループ", 300, 300 + cnt) //これだと長引く
+	for (let cnt = 0; ; cnt++) {
+		//消去
+		SetColor("white")
+		DrawRect(0, 0, 800, 600)
 
-	// 	await Sleep(1) //休憩時間、冷却時間
-	// }
+		SetColor("black")
+		DrawText("無限ループ", 300, 300 + cnt) //これだと長引く
+
+		await Sleep(1) //休憩時間、冷却時間
+	}
 
 	// //四角形表示
 	// SetColor("red")
